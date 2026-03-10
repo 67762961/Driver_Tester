@@ -191,7 +191,7 @@ always @ (posedge Clk_5 or negedge rst_n) begin
     if (!rst_n)
 		cnt2 <= 12'b0;
     else begin
-		if(cnt2 < CNT_MAX/2)
+		if(cnt2 < CNT_MAX/2 - 1) // 周期向下取整
 			cnt2 <= cnt2 + 12'b1;
 		else
 			cnt2 <= 12'b0;
