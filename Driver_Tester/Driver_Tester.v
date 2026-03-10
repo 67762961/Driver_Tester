@@ -43,8 +43,8 @@ output	PWMO1,PWMO2;					// 六路pwm波输出
 wire		Clk_5;       // 慢时钟 5分频
 reg  [2:0]	Cnt_po_Clk;					// 分频计数器
 reg  [2:0]	Cnt_ne_Clk;					// 分频计数器
-reg				Clk_5_ne;
-reg				Clk_5_po;
+reg			Clk_5_ne;
+reg			Clk_5_po;
 
 always @ ( posedge clk or negedge rst_n ) begin
 	if (!rst_n) begin
@@ -124,17 +124,19 @@ always @ (posedge Clk_5 or negedge rst_n) begin
 		sLed_flag <= 5'b0;
 	else begin
 		sLed_flag = sLed_flag + 1'b1;
-		if((4'b0000 <= sLed_flag) && (sLed_flag <= 4'b0111)) begin
+		if((4'b0000 <= sLed_flag) && (sLed_flag <= 4'b0100)) begin
 			sLed_DIG <= 2'b10;
 			sLed_data0 <= sLed_DATA[3:0];
 		end
-		else if((4'b1000 <= sLed_flag) && (sLed_flag <= 4'b1111)) begin
+		else if((4'b1000 <= sLed_flag) && (sLed_flag <= 4'b1100)) begin
 			sLed_DIG <= 2'b01;
 			sLed_data0 <= sLed_DATA[7:4];
 		end
-		else 
+		else begin
 			sLed_DIG <= 2'b11;
-		
+			sLed_data0 <= 4'hf;
+		end
+
 		case (sLed_data0)
 			4'h0 : sLed_D0[6:0] <= 7'h40; //显示"0"
 			4'h1 : sLed_D0[6:0] <= 7'h79; //显示"1"
@@ -161,13 +163,21 @@ always @ (posedge clk or negedge rst_n) begin
 	end
 	else begin 
 		case( mode )
-			4'b0001: begin // 
+			4'b0001: begin // 60kHz
 				sLed_DATA <= 8'h60;
-				CNT_MAX<=12'd83;
+				CNT_MAX<=12'd166;
 			end
-			4'b0010: begin // 
+			4'b0010: begin // 32kHz
 				sLed_DATA <= 8'h32;
-				CNT_MAX<=12'd156;
+				CNT_MAX<=12'd312;
+			end
+			4'b0100: begin // 24kHz
+				sLed_DATA <= 8'h24;
+				CNT_MAX<=12'd416;
+			end
+			4'b1000: begin // 16kHz
+				sLed_DATA <= 8'h16;
+				CNT_MAX<=12'd625;
 			end
 		endcase
 	end
@@ -181,7 +191,7 @@ always @ (posedge Clk_5 or negedge rst_n) begin
     if (!rst_n)
 		cnt2 <= 12'b0;
     else begin
-		if(cnt2 < CNT_MAX)
+		if(cnt2 < CNT_MAX/2)
 			cnt2 <= cnt2 + 12'b1;
 		else
 			cnt2 <= 12'b0;
