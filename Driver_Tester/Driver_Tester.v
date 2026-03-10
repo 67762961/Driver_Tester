@@ -17,7 +17,7 @@
 //      1.0.0
 
 
-module  Dirver_Tester(
+module  Driver_Tester(
      clk,rst_n,
 		ckey0,ckey1,ckey2,ckey3,
 		led_d0,led_d1,led_d2,led_d3,

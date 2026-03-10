@@ -25,7 +25,7 @@
 
 set_global_assignment -name DEVICE EPM570T100C5
 set_global_assignment -name FAMILY "MAX II"
-set_global_assignment -name TOP_LEVEL_ENTITY Dirver_Tester
+set_global_assignment -name TOP_LEVEL_ENTITY Driver_Tester
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 7.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "20:36:12  OCTOBER 16, 2008"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.1
@@ -67,7 +67,7 @@ set_location_assignment PIN_82 -to sled_d0[6]
 set_location_assignment PIN_87 -to sled_Dig[0]
 set_location_assignment PIN_86 -to sled_Dig[1]
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
+set_global_assignment -name SDC_FILE Driver_Tester.sdc
+set_global_assignment -name VERILOG_FILE Driver_Tester.v
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
-set_global_assignment -name SDC_FILE Dirver_Tester.sdc
-set_global_assignment -name VERILOG_FILE Dirver_Tester.v
