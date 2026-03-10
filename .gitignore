@@ -1,0 +1,28 @@
+# ==========================================
+# 修正版：确保能正确跟踪子目录内的文件
+# ==========================================
+
+# 1. 首先，忽略 Driver_Tester 目录下的所有东西
+Driver_Tester/
+
+# 2. 然后，强制保留 Driver_Tester 目录本身 (否则 git 会认为这是个空目录而忽略它)
+!Driver_Tester/
+
+# 3. 接着，重新忽略 Driver_Tester 下的所有文件 (递归)
+Driver_Tester/**
+
+# 4. 最后，白名单：显式保留需要的文件类型
+!Driver_Tester/**/*.v
+!Driver_Tester/**/*.sv
+!Driver_Tester/**/*.qpf
+!Driver_Tester/**/*.qsf
+!Driver_Tester/**/*.sdc
+!Driver_Tester/**/*.txt
+!Driver_Tester/**/*.md
+!Driver_Tester/**/*.pdf
+!Driver_Tester/**/*.doc
+!Driver_Tester/**/*.docx
+!Driver_Tester/**/*.qip
+!Driver_Tester/**/*.qsys
+!Driver_Tester/**/*.mif
+!Driver_Tester/**/*.hex
