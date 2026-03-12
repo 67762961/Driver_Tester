@@ -246,22 +246,22 @@ always @ (posedge Clk_5 or negedge rst_n) begin
 		sLed_flag <= 5'b0;
 	else begin
 		sLed_flag = sLed_flag + 1'b1;
-		if((5'b00000 <= sLed_flag) && (sLed_flag <= 5'b00011)) begin
+		if((5'b00000 <= sLed_flag) && (sLed_flag < 5'b00011)) begin
 			sLed_DIG <= 4'b1110;
 			sLed_data0 <= sLed_DATA[3:0];
 			sled_d0[7] <= 1'b1;
 		end
-		else if((5'b01000 <= sLed_flag) && (sLed_flag <= 5'b01011)) begin
+		else if((5'b01000 <= sLed_flag) && (sLed_flag < 5'b01011)) begin
 			sLed_DIG <= 4'b1101;
 			sLed_data0 <= sLed_DATA[7:4];
 			sled_d0[7] <= 1'b1;
 		end
-		else if((5'b10000 <= sLed_flag) && (sLed_flag <= 5'b10011)) begin
+		else if((5'b10000 <= sLed_flag) && (sLed_flag < 5'b10011)) begin
 			sLed_DIG <= 4'b1011;
 			sLed_data0 <= state_1;
 			sled_d0[7] <= ~neg_1;
 		end
-		else if((5'b11000 <= sLed_flag) && (sLed_flag <= 5'b11011)) begin
+		else if((5'b11000 <= sLed_flag) && (sLed_flag < 5'b11011)) begin
 			sLed_DIG <= 4'b0111;
 			sLed_data0 <= state_0;
 			sled_d0[7] <= ~neg_0;
